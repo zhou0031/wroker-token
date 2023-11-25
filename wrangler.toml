@@ -1,0 +1,10 @@
+name = "token"
+main = "src/index.js"
+compatibility_date = "2023-11-21"
+
+[[kv_namespaces]]
+binding = "allowed" 
+id = "dfd99f12fcb040ee991e21c70a47214d"
+
+[triggers]
+crons = ["*/30 * * * *"]
