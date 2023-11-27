@@ -1,4 +1,6 @@
 import {error,json,Router} from 'itty-router'
+import jwt from '@tsndr/cloudflare-worker-jwt'
+
 
 const router = Router()
 
