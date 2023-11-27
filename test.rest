@@ -1,1 +1,1 @@
-GET token.310soft.com
+GET token.310soft.com/getToken

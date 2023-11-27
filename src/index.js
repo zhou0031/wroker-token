@@ -1,4 +1,3 @@
-import jwt from '@tsndr/cloudflare-worker-jwt'
 import {error,json,Router} from 'itty-router'
 
 const router = Router()
@@ -9,8 +8,14 @@ async function auth(request,env,ctx){
 		return error(401,"Invalid Request")	
 }
 
+async function getToken(request,env){
+	const token=await env.allowed.get("access_token")
+	return token
+}
+
 router
 	.all("*",auth)
+	.get("/getToken",getToken)
 
 export default {
 	
