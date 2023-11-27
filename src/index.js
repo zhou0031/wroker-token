@@ -5,9 +5,12 @@ import jwt from '@tsndr/cloudflare-worker-jwt'
 const router = Router()
 
 async function auth(request,env,ctx){
-	const authResponse = await env.auth.fetch(request.clone())
-	if (authResponse.status !== 200) 
-		return error(401,"Invalid Request")	
+	const allowed_ipv4 = await env.allowed.get("ipv4")
+	const allowed_ipv6 = await env.allowed.get("ipv6")
+	const trueClientIp=request.headers.get("CF-Connecting-IP")
+	
+	if(trueClientIp!==allowed_ipv4&&trueClientIp!==allowed_ipv6) 
+		return new Response("Invalid Request",{status:403})
 }
 
 async function getToken(request,env){
